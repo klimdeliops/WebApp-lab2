@@ -7,9 +7,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-# ==============================
 # 1. ОТОБРАЖЕНИЕ ДАННЫХ ЗАПРОСА
-# ==============================
 @app.route("/request")
 def request_info():
     return render_template(
@@ -20,9 +18,7 @@ def request_info():
     )
 
 
-# ==============================
 # 2. ФОРМА АВТОРИЗАЦИИ
-# ==============================
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -38,9 +34,7 @@ def login():
     return render_template("login.html")
 
 
-# ==============================
 # 3. ПРОВЕРКА ТЕЛЕФОНА
-# ==============================
 @app.route("/phone", methods=["GET", "POST"])
 def phone():
     error = None

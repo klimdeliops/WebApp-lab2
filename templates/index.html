@@ -1,11 +1,45 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Главная</h2>
+<div class="text-center mb-5">
+    <h2 class="mb-3" style="color: #667eea;">
+        <i class="fas fa-home"></i> Главная
+    </h2>
+    <p class="lead text-muted">Добро пожаловать в Flask Lab! Выберите раздел:</p>
+</div>
 
-<ul>
-    <li><a href="/request">Данные запроса</a></li>
-    <li><a href="/login">Авторизация</a></li>
-    <li><a href="/phone">Проверка телефона</a></li>
-</ul>
+<div class="row justify-content-center g-4">
+    <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm">
+            <div class="card-body">
+                <i class="fas fa-globe" style="font-size: 3rem; color: #667eea;"></i>
+                <h5 class="card-title mt-3">Данные запроса</h5>
+                <p class="card-text text-muted">Информация о HTTP-запросе</p>
+                <a href="/request" class="btn btn-primary">Перейти →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm">
+            <div class="card-body">
+                <i class="fas fa-sign-in-alt" style="font-size: 3rem; color: #667eea;"></i>
+                <h5 class="card-title mt-3">Авторизация</h5>
+                <p class="card-text text-muted">Вход в систему</p>
+                <a href="/login" class="btn btn-primary">Перейти →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm">
+            <div class="card-body">
+                <i class="fas fa-phone-alt" style="font-size: 3rem; color: #667eea;"></i>
+                <h5 class="card-title mt-3">Проверка телефона</h5>
+                <p class="card-text text-muted">Валидация номера</p>
+                <a href="/phone" class="btn btn-primary">Перейти →</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

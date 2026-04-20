@@ -1,32 +1,165 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Проверка телефона</h2>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg" style="border-radius: 25px;">
+            <div class="card-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-phone-alt" style="font-size: 2.5rem; color: #667eea;"></i>
+                    </div>
+                    <h3 style="color: #667eea; font-weight: 600;">Проверка телефона</h3>
+                    <p class="text-muted small">Введите номер для проверки и форматирования</p>
+                </div>
+                
+                <form method="POST">
+                    <div class="mb-4">
+                        <label class="form-label text-muted small fw-semibold">
+                            <i class="fas fa-mobile-alt"></i> Номер телефона
+                        </label>
+                        <input 
+                            type="text" 
+                            name="phone" 
+                            class="form-control form-control-lg {% if error %}is-invalid{% endif %}" 
+                            value="{{ phone }}"
+                            placeholder="+7 (999) 123-45-67"
+                            style="border-radius: 15px; padding: 12px 16px;"
+                        >
 
-<form method="POST">
-    <div class="mb-3">
-        <input 
-            type="text" 
-            name="phone" 
-            class="form-control {% if error %}is-invalid{% endif %}" 
-            value="{{ phone }}"
-            placeholder="Введите номер"
-        >
+                        {% if error %}
+                        <div class="invalid-feedback d-block mt-2">
+                            <i class="fas fa-exclamation-circle"></i> {{ error }}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="form-text mt-2">
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle"></i> Примеры: 89991234567, +7 999 123-45-67, 8(999)123-45-67
+                            </small>
+                        </div>
+                    </div>
 
-        {% if error %}
-        <div class="invalid-feedback">
-            {{ error }}
+                    <button class="btn btn-primary w-100 py-3" style="border-radius: 50px; font-weight: 500; font-size: 1.1rem;">
+                        <i class="fas fa-check-circle"></i> Проверить номер
+                    </button>
+                </form>
+
+                {% if formatted %}
+                <div class="alert alert-success mt-4" style="border-radius: 15px; border-left: 4px solid #28a745;">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <strong class="d-block mb-1">Отформатированный номер:</strong>
+                            <span style="font-size: 1.2rem; font-weight: 600;">{{ formatted }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Дополнительная информация -->
+                <div class="mt-4 pt-2 text-center border-top" style="border-color: #e0e0e0 !important;">
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt"></i> Безопасная проверка номеров
+                    </small>
+                    <br>
+                    <small class="text-muted">
+                        <i class="fas fa-sync"></i> Автоматическое форматирование в международный формат
+                    </small>
+                </div>
+            </div>
         </div>
-        {% endif %}
     </div>
-
-    <button class="btn btn-success">Проверить</button>
-</form>
-
-{% if formatted %}
-<div class="alert alert-success mt-3">
-    Отформатированный номер: {{ formatted }}
 </div>
-{% endif %}
 
+<style>
+    /* Дополнительные стили для улучшения внешнего вида */
+    .icon-circle {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .icon-circle:hover {
+        transform: scale(1.05);
+    }
+    
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        background: linear-gradient(135deg, #5a67d8 0%, #6b46a0 100%);
+    }
+    
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+    
+    .alert-success {
+        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        border: none;
+        animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Стили для placeholder */
+    .form-control::placeholder {
+        color: #adb5bd;
+        font-size: 0.95rem;
+    }
+    
+    /* Улучшенные стили для invalid состояния */
+    .is-invalid {
+        border-color: #dc3545;
+        background-image: none;
+    }
+    
+    .invalid-feedback {
+        font-size: 0.875rem;
+    }
+    
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1.5rem !important;
+        }
+        
+        .btn-primary {
+            padding: 0.75rem !important;
+            font-size: 1rem !important;
+        }
+        
+        .form-control-lg {
+            font-size: 1rem;
+        }
+    }
+</style>
 {% endblock %}

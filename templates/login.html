@@ -1,17 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Авторизация</h2>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg" style="border-radius: 25px;">
+            <div class="card-body p-4 p-md-4">
+                <div class="text-center mb-2">
+                    <i class="fas fa-lock" style="font-size: 2.4rem; color: #667eea;"></i>
+                    <h3 class="mt-2" style="color: #667eea;">Авторизация</h3>
+                    <p class="text-muted small">Введите свои данные для входа</p>
+                </div>
+                
+                <form method="POST">
+                    <div class="mb-2">
+                        <label class="form-label text-muted small">
+                            <i class="fas fa-user"></i> Логин
+                        </label>
+                        <input type="text" name="username" class="form-control" 
+                               placeholder="Введите логин" style="border-radius: 12px;" required>
+                    </div>
 
-<form method="POST">
-    <div class="mb-3">
-        <input type="text" name="username" class="form-control" placeholder="Логин">
+                    <div class="mb-2">
+                        <label class="form-label text-muted small">
+                            <i class="fas fa-key"></i> Пароль
+                        </label>
+                        <input type="password" name="password" class="form-control" 
+                               placeholder="Введите пароль" style="border-radius: 12px;" required>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input type="checkbox" name="remember" class="form-check-input" id="remember">
+                        <label class="form-check-label small text-muted" for="remember">
+                            Запомнить меня
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary w-100 py-2" style="border-radius: 50px;">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                </form>
+                
+                <div class="text-center mt-2">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle"></i> Тестовые данные: user / qwerty
+                    </small>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <input type="password" name="password" class="form-control" placeholder="Пароль">
-    </div>
-
-    <button class="btn btn-primary">Войти</button>
-</form>
+</div>
 {% endblock %}

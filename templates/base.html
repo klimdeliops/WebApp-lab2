@@ -4,13 +4,155 @@
     <meta charset="UTF-8">
     <title>Flask App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Страница занимает минимум всю высоту окна */
+        html, body {
+            min-height: 100vh;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            /* Используем flex, чтобы растянуть контейнер на всю высоту */
+            display: flex;
+            align-items: flex-start; /* Прижимаем к верху, но блок будет расти */
+            min-height: 100vh;
+        }
+        
+        .main-container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            
+            /* КЛЮЧЕВОЕ: минимальная высота = 100% высоты окна минус отступы body (20px сверху и 20px снизу) */
+            min-height: calc(100vh - 40px);
+            
+            /* Высота автоматическая — растягивается под контент */
+            height: auto;
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        hr {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 3px;
+            opacity: 0.5;
+            margin-bottom: 30px;
+        }
+        
+        /* Стили для карточек */
+        .card {
+            border-radius: 20px !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary {
+            border-radius: 50px !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 10px 25px;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46a0 100%);
+        }
+        
+        .list-group-item {
+            border-radius: 15px !important;
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .list-group-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .list-group-item:hover {
+            transform: translateX(5px);
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .btn-outline-primary {
+            border-radius: 50px !important;
+            border-color: #667eea;
+            color: #667eea;
+            padding: 12px 30px;
+        }
+        
+        .btn-outline-primary:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+        }
+        
+        .form-control {
+            border-radius: 15px !important;
+            padding: 12px;
+        }
+        
+        .alert {
+            border-radius: 15px !important;
+        }
+        
+        /* Демо-стиль для контента — показывает, что блок растягивается */
+        .demo-long-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-<body class="container mt-4">
+<body>
+    <div class="main-container">
+        <h1>
+            <i class="fas fa-flask"></i> Flask приложение
+        </h1>
+        <hr>
 
-    <h1>Flask приложение</h1>
-    <hr>
+        <!-- Блок контента (будет растягивать белый блок) -->
+        {% block content %}
+            <!-- Демонстрационный контент: раскомментируйте для проверки -->
+            <div class="demo-long-content">
+                <h3>📄 Базовый контент</h3>
+                <p>Белый блок имеет минимальную высоту на весь экран (minus padding 20px сверху/снизу).</p>
+                <p>Если контента мало — блок всё равно остаётся высоким (на всю высоту окна).</p>
+                <p>Если контента много — блок <strong>растягивается</strong> вместе с ним!</p>
+                <hr>
+                <p>👇 Добавьте больше строк, чтобы увидеть растяжение:</p>
+                <ul>
+                    <li>Строка 1</li>
+                    <li>Строка 2</li>
+                    <li>Строка 3</li>
+                    <li>Строка 4 — блок станет выше экрана, появится скролл страницы</li>
+                </ul>
+                <p>✅ Задача решена: <code>min-height: calc(100vh - 40px)</code> + <code>height: auto</code>.</p>
+            </div>
+        {% endblock %}
+    </div>
 
-    {% block content %}{% endblock %}
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
